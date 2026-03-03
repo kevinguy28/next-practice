@@ -1,9 +1,11 @@
 "use client";
-import { Post } from "@/interfaces/post";
-import { useState } from "react";
-import PostDisplay from "../ui/PostDisplay";
 
-export default function PostClient(posts: Post[]) {
+import { Post } from "@/interfaces/post";
+import PostDisplay from "../ui/PostDisplay";
+import SearchBar from "../ui/Searchbar";
+import { useState } from "react";
+
+export default function PostClient({ posts }: { posts: Post[] }) {
     const [searchBarInput, setSearchBarInput] = useState<string>("");
 
     const filteredPosts = posts.filter((post) =>
@@ -12,5 +14,10 @@ export default function PostClient(posts: Post[]) {
             .includes(searchBarInput.toLocaleLowerCase()),
     );
 
-    return <PostDisplay posts={filteredPosts} />;
+    return (
+        <div>
+            <SearchBar setSearchBarInput={setSearchBarInput} />
+            <PostDisplay posts={filteredPosts} />
+        </div>
+    );
 }

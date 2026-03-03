@@ -1,4 +1,5 @@
 import { Post } from "@/interfaces/post";
+import { notFound } from "next/navigation";
 
 export async function fetchPost(
     page: number = 1,
@@ -17,4 +18,12 @@ export async function fetchPost(
         console.error(error);
         return [];
     }
+}
+
+export async function fetchSingularPost(id: string): Promise<Post> {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    if (!res.ok) {
+        notFound();
+    }
+    return res.json();
 }

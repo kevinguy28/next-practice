@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Post } from "@/interfaces/post";
 
 export default function PostDisplay({ posts }: { posts: Post[] }) {
@@ -6,7 +7,12 @@ export default function PostDisplay({ posts }: { posts: Post[] }) {
             {" "}
             {posts.map((post) => (
                 <div key={post.id} className="bg-gray-800 p-2">
-                    <h1 className="font-bold">{post.title}</h1>
+                    <Link href={`/post/${post.id}`}>
+                        {" "}
+                        <h1 className="font-bold hover:text-blue-800">
+                            {post.title}
+                        </h1>
+                    </Link>
                     <div>{post.body}</div>
                 </div>
             ))}

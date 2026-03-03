@@ -1,7 +1,12 @@
 "use client";
-import { useState } from "react";
 
-export default function SearchBar() {
+import { Dispatch, SetStateAction } from "react";
+
+export default function SearchBar({
+    setSearchBarInput,
+}: {
+    setSearchBarInput: Dispatch<SetStateAction<string>>;
+}) {
     return (
         <div className="w-full flex justify-center my-4">
             <input
